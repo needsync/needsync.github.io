@@ -10,7 +10,7 @@
 
 ## Homepage
 
-![Homepage Preview](./assets/hero-page.png)
+![Homepage Preview](./src/assets/hero-page.png)
 
 ```txt
 Live Demo: https://neoodev.github.io/Needsync
@@ -516,7 +516,7 @@ This project is licensed under the MIT License.
 Developed by **NeedSync Developers**
 
 GitHub:
-https://github.com/Neooodev
+https://github.com/Neoodev
 
 ---
 
