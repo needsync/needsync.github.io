@@ -14,7 +14,7 @@ import Testimonials from "./components/Testimonials";
 import WhyUs from "./components/WhyUs";
 import ThemeContext from "./context/ThemeContext";
 function App() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   const toggle = () => setDark((d) => !d);
 
   useEffect(() => {
