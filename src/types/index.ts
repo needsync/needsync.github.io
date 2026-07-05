@@ -19,6 +19,7 @@ export interface Project {
   problem: string;
   solution: string;
   result: string;
+  link?: string;
 }
 
 export interface TeamMember {

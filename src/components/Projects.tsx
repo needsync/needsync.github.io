@@ -12,6 +12,7 @@ function ProjectCard({
   problem,
   solution,
   result,
+  link,
   index,
 }: ProjectCardProps) {
   return (
@@ -46,6 +47,32 @@ function ProjectCard({
           <span className="text-base leading-none mt-0.5">↑</span>
           {result}
         </div>
+
+        {link && (
+          <div className="mt-5 pt-5 border-t dark:border-white/5 border-navy-900/5">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-purple-light hover:text-purple-DEFAULT transition-colors"
+            >
+              View Live Demo
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              >
+                <path d="M7 17L17 7" />
+                <path d="M7 7h10v10" />
+              </svg>
+            </a>
+          </div>
+        )}
       </motion.div>
     </RevealBlock>
   );
