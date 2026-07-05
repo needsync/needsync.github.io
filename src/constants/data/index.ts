@@ -89,8 +89,9 @@ export const PROJECTS: Project[] = [
     title: "Auto aerials",
     client: "US Based",
     problem: "Manual tracking caused errors and delays",
-    solution: "Provide comprehensive web app where users can schedule",
-    result: "Reduced errors by 40% and improved workout tracking efficiency",
+    solution: "Provide comprehensive web app where users can book cars",
+    result:
+      "Reduced errors by 40% and improved booking and tracking efficiency",
     link: "https://autoaerials.com",
   },
   {
@@ -110,7 +111,7 @@ export const PROJECTS: Project[] = [
     solution: "Automated financial tracking system with real-time insights",
     result:
       "Reduced errors by 40% and improved financial management efficiency",
-    link: "https://project-link.com",
+    link: "https://cashly.hearti.me",
   },
   {
     tag: "Automation",
@@ -121,7 +122,7 @@ export const PROJECTS: Project[] = [
     solution: "Automated scheduling and notification system",
     result:
       "Reduced missed appointments by 30% and improved scheduling efficiency",
-    link: "https://project-link.com",
+    link: "https://midnightpanel.com",
   },
   {
     tag: "Cafe",
@@ -131,7 +132,7 @@ export const PROJECTS: Project[] = [
     solution: "Automated inventory management system with real-time tracking",
     result:
       "Reduced stockouts by 25% and improved inventory management efficiency",
-    link: "https://project-link.com",
+    link: "https://beansnsteamscafe.xcazu.xyz",
   },
   {
     tag: "Education",
@@ -143,7 +144,7 @@ export const PROJECTS: Project[] = [
       "Automated student performance tracking system with real-time insights",
     result:
       "Reduced delayed interventions by 35% and improved student performance tracking efficiency",
-    link: "https://project-link.com",
+    link: "https://dayawism-login.web.app/home1.html",
   },
   {
     tag: "Trading",
@@ -153,7 +154,7 @@ export const PROJECTS: Project[] = [
     solution: "Automated trading data analysis system with real-time insights",
     result:
       "Reduced analysis time by 50% and improved trading decision-making efficiency",
-    link: "https://project-link.com",
+    link: "https://viscount.gg",
   },
   {
     tag: "E-Commerce",
@@ -165,7 +166,7 @@ export const PROJECTS: Project[] = [
       "Automated order processing and inventory management system with real-time tracking",
     result:
       "Reduced order processing errors by 30% and improved inventory management efficiency",
-    link: "https://project-link.com",
+    link: "https://esimstar.com",
   },
 ];
 
