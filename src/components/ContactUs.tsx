@@ -54,8 +54,8 @@ function Contact() {
           <RevealBlock delay={0.1}>
             <div className="space-y-4">
               {[
-                { icon: "📧", text: "needsync@email.com" },
-                { icon: "📞", text: "+63 900 000 0000" },
+                { icon: "📧", text: "needsynq@gmail.com" },
+                { icon: "📞", text: "+63 994 692 8323" },
                 { icon: "📍", text: "Philippines" },
               ].map((c, i) => (
                 <motion.div
