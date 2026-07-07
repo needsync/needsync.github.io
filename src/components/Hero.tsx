@@ -104,10 +104,10 @@ function Hero() {
           {/* Heading */}
           <motion.h1
             variants={item}
-            className="font-syne font-extrabold tracking-tight leading-[1.05] dark:text-white text-navy-900 mb-6"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
+            className="font-syne font-extrabold tracking-tight leading-[1.05] dark:text-white text-navy-900 mb-6 break-words"
+            style={{ fontSize: "clamp(2rem, 8vw, 5.5rem)" }}
           >
-            <span className="grad-text break-all">Synchronizing</span>
+            <span className="grad-text">Synchronizing</span>
             <br />
             <span className="grad-text">Innovation</span>
             <br />
