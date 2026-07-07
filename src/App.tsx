@@ -13,6 +13,7 @@ import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
 import WhyUs from "./components/WhyUs";
 import ThemeContext from "./context/ThemeContext";
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   const [dark, setDark] = useState(false);
   const toggle = () => setDark((d) => !d);
@@ -37,6 +38,7 @@ function App() {
         {/* <FAQ /> */}
         <Contact />
         <Footer />
+        <ScrollToTop />
       </div>
     </ThemeContext.Provider>
   );
