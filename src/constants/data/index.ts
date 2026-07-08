@@ -101,7 +101,7 @@ export const PROJECTS: Project[] = [
     problem: "Manual tracking caused errors and delays",
     solution: "Provide comprehensive gym tutorials workouts",
     result: "Reduced errors by 40% and improved workout tracking efficiency",
-    link: "https://project-link.com",
+    link: "https://fitr-web.vercel.app/login",
   },
   {
     tag: "Finances",
