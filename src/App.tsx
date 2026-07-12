@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Process from "./components/Process";
 import About from "./components/About";
@@ -17,6 +17,7 @@ import ThemeContext from "./context/ThemeContext";
 import ScrollToTop from "./components/ScrollToTop";
 
 function HomePage() {
+  const location = useLocation();
   useEffect(() => {
     const id = location.pathname.slice(1); // "/services" -> "services"
     if (id) {
