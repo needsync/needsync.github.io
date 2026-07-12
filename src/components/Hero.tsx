@@ -1,12 +1,14 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { GradientButton } from "./GradientButton";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 function Hero() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.3], [0, -80]);
   const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const container = {
     hidden: {},
     visible: {
@@ -21,6 +23,22 @@ function Hero() {
       y: 0,
       transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
     },
+  };
+
+  const scrollToSection = (id: string) => {
+    window.history.replaceState(null, "", `/#/${id}${location.search}`);
+
+    const doScroll = () => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    if (location.pathname !== "/") {
+      navigate({ pathname: `/${id}`, search: location.search });
+      requestAnimationFrame(() => setTimeout(doScroll, 100));
+      return;
+    }
+
+    doScroll();
   };
 
   return (
@@ -128,8 +146,10 @@ function Hero() {
             variants={item}
             className="flex flex-wrap gap-4 justify-center mb-16"
           >
-            <GradientButton href="#contact">Start a Project →</GradientButton>
-            <GradientButton href="#projects" outline>
+            <GradientButton onClick={() => scrollToSection("contact")}>
+              Start a Project →
+            </GradientButton>
+            <GradientButton onClick={() => scrollToSection("projects")} outline>
               View Our Work
             </GradientButton>
           </motion.div>

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -15,6 +18,11 @@ function ScrollToTop() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate({ pathname: "/", search: location.search });
+    } else {
+      window.history.replaceState(null, "", `/${location.search}`);
+    }
   };
 
   return (
