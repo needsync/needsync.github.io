@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { HashRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Process from "./components/Process";
 import About from "./components/About";
@@ -12,12 +12,40 @@ import Projects from "./components/Projects";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
 import WhyUs from "./components/WhyUs";
+import NotFound from "./components/NotFound";
 import ThemeContext from "./context/ThemeContext";
 import ScrollToTop from "./components/ScrollToTop";
+
+function HomePage() {
+  useEffect(() => {
+    const id = location.pathname.slice(1); // "/services" -> "services"
+    if (id) {
+      // slight delay so the section has mounted before we scroll
+      const timer = setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname]);
+  return (
+    <>
+      <Hero />
+      <Services />
+      <Process />
+      <Projects />
+      <About />
+      {/* <Testimonials /> */}
+      <WhyUs />
+      {/* <FAQ /> */}
+      <Contact />
+      <Footer />
+    </>
+  );
+}
+
 function App() {
   const [dark, setDark] = useState(false);
   const toggle = () => setDark((d) => !d);
-
   useEffect(() => {
     const root = document.documentElement;
     if (dark) root.classList.add("dark");
@@ -26,22 +54,22 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ dark, toggle }}>
-      <div className={`noise dark:bg-navy-900 bg-white min-h-screen`}>
-        <Navbar />
-        <Hero />
-        <Services />
-        <Process />
-        <Projects />
-        <About />
-        {/* <Testimonials /> */}
-        <WhyUs />
-        {/* <FAQ /> */}
-        <Contact />
-        <Footer />
-        <ScrollToTop />
-      </div>
+      <HashRouter>
+        <div className={`noise dark:bg-navy-900 bg-white min-h-screen`}>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/process" element={<Process />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <ScrollToTop />
+        </div>
+      </HashRouter>
     </ThemeContext.Provider>
   );
 }
-
 export default App;

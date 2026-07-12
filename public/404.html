@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting… | NEEDSYNQ</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: #0a0e1a;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .wrap {
+        text-align: center;
+      }
+      .logo {
+        font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+      }
+      .logo .grad {
+        background: linear-gradient(100deg, #5b8dff, #a064ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .spinner {
+        width: 28px;
+        height: 28px;
+        margin: 0 auto;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-top-color: #7b3ff2;
+        animation: spin 0.7s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      noscript a {
+        color: #5b8dff;
+      }
+    </style>
+    <script>
+      // Preserve the intended path (and any existing hash) when bouncing
+      // through the HashRouter, so React can pick up where the server left off.
+      var path = window.location.pathname + window.location.search;
+      var hash = window.location.hash;
+      // Avoid double-prefixing if this ever gets hit directly at the root
+      if (path !== "/") {
+        window.location.replace("/#" + path + hash);
+      } else if (hash) {
+        window.location.replace("/" + hash);
+      } else {
+        window.location.replace("/");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="logo">
+        <span style="color: #fff">NEED</span><span class="grad">SYNQ</span>
+      </div>
+      <div class="spinner"></div>
+    </div>
+    <noscript>
+      <p style="margin-top: 16px">
+        JavaScript is required to redirect automatically.
+        <a href="/">Click here to go home</a>.
+      </p>
+    </noscript>
+  </body>
+</html>

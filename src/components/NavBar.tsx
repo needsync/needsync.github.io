@@ -1,6 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
 
 // ─── NAVBAR ───────────────────────────────────────────────────────────────────
@@ -8,6 +9,8 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { dark } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -16,6 +19,32 @@ function Navbar() {
   }, []);
 
   const links = ["Services", "Process", "Projects", "About", "Contact"];
+
+  const scrollToSection = (id: string) => {
+    setOpen(false);
+    window.history.replaceState(null, "", `/#/${id}`);
+
+    const doScroll = () => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    if (location.pathname !== "/") {
+      navigate(`/${id}`);
+      requestAnimationFrame(() => setTimeout(doScroll, 100));
+      return;
+    }
+
+    doScroll();
+  };
+
+  const goHome = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate({ pathname: "/", search: location.search });
+    } else {
+      window.history.replaceState(null, "", `/${location.search}`);
+    }
+  };
 
   return (
     <>
@@ -32,21 +61,24 @@ function Navbar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Logo */}
-        <a href="#" className="font-syne font-extrabold text-xl tracking-tight">
+        <button
+          onClick={goHome}
+          className="font-syne font-extrabold text-xl tracking-tight"
+        >
           <span className="dark:text-white text-navy-900">NEED</span>
           <span className="grad-text">SYNQ</span>
-        </a>
+        </button>
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-7 list-none">
           {links.map((l) => (
             <li key={l}>
-              <a
-                href={`#${l.toLowerCase()}`}
+              <button
+                onClick={() => scrollToSection(l.toLowerCase())}
                 className="dark:text-white/50 text-navy-900/50 dark:hover:text-white hover:text-navy-900 text-sm font-medium transition-colors duration-200"
               >
                 {l}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
@@ -54,15 +86,18 @@ function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <a href="#contact" className="hidden md:block">
-            <motion.button
-              className="grad-bg text-white font-syne font-bold text-sm px-5 py-2.5 rounded-lg shadow-md shadow-blue-DEFAULT/30"
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="hidden md:block"
+          >
+            <motion.span
+              className="grad-bg text-white font-syne font-bold text-sm px-5 py-2.5 rounded-lg shadow-md shadow-blue-DEFAULT/30 inline-block"
               whileHover={{ y: -1, scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
               Start a Project
-            </motion.button>
-          </a>
+            </motion.span>
+          </button>
           {/* Hamburger */}
           <button
             className="md:hidden flex flex-col gap-1.5 p-1"
@@ -98,22 +133,20 @@ function Navbar() {
             transition={{ duration: 0.25 }}
           >
             {links.map((l) => (
-              <a
+              <button
                 key={l}
-                href={`#${l.toLowerCase()}`}
-                className="dark:text-white/80 text-navy-900/80 text-base font-medium py-2 border-b dark:border-white/5 border-navy-900/5"
-                onClick={() => setOpen(false)}
+                onClick={() => scrollToSection(l.toLowerCase())}
+                className="dark:text-white/80 text-navy-900/80 text-base font-medium py-2 border-b dark:border-white/5 border-navy-900/5 text-left"
               >
                 {l}
-              </a>
+              </button>
             ))}
-            <a
-              href="#contact"
+            <button
+              onClick={() => scrollToSection("contact")}
               className="grad-bg text-white text-center font-syne font-bold py-3 rounded-lg mt-1"
-              onClick={() => setOpen(false)}
             >
               Start a Project
-            </a>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
